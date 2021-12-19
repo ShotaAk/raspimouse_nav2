@@ -1,0 +1,112 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="RasPiMouseNav2Field">
+    <scene>
+      <shadows>0</shadows>
+    </scene>
+
+    <gui>
+      <camera name="user_camera">
+        <pose>0 0 10.0 0 1.57 0</pose>
+      </camera>
+    </gui>
+
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <!-- 箱を並べて壁を作る -->
+    <!-- 上の壁 -->
+    <model name="cube01">
+      <include>
+        <uri>model://cube_20k</uri>
+      </include>
+      <pose>2.0 -1.01 0 0 0 0</pose>
+    </model>
+
+    <model name="cube02">
+      <include>
+        <uri>model://cube_20k</uri>
+      </include>
+      <pose>2.0 0.0 0 0 0 0</pose>
+    </model>
+
+    <model name="cube03">
+      <include>
+        <uri>model://cube_20k</uri>
+      </include>
+      <pose>2.0 1.01 0 0 0 0</pose>
+    </model>
+
+    <!-- 左の壁 -->
+    <model name="cube04">
+      <include>
+        <uri>model://cube_20k</uri>
+      </include>
+      <pose>1.01 2.02 0 0 0 0</pose>
+    </model>
+
+    <model name="cube05">
+      <include>
+        <uri>model://cube_20k</uri>
+      </include>
+      <pose>0.0 2.02 0 0 0 0</pose>
+    </model>
+
+    <model name="cube06">
+      <include>
+        <uri>model://cube_20k</uri>
+      </include>
+      <pose>-1.01 2.02 0 0 0 0</pose>
+    </model>
+
+    <!-- 右の壁 -->
+    <model name="cube07">
+      <include>
+        <uri>model://cube_20k</uri>
+      </include>
+      <pose>1.01 -2.02 0 0 0 0</pose>
+    </model>
+
+    <model name="cube08">
+      <include>
+        <uri>model://cube_20k</uri>
+      </include>
+      <pose>0.0 -2.02 0 0 0 0</pose>
+    </model>
+
+    <model name="cube09">
+      <include>
+        <uri>model://cube_20k</uri>
+      </include>
+      <pose>-1.01 -2.02 0 0 0 0</pose>
+    </model>
+
+    <!-- 下の壁 -->
+    <model name="cube10">
+      <include>
+        <uri>model://cube_20k</uri>
+      </include>
+      <pose>-2.0 -1.01 0 0 0 0</pose>
+    </model>
+
+    <model name="cube11">
+      <include>
+        <uri>model://cube_20k</uri>
+      </include>
+      <pose>-2.0 0.0 0 0 0 0</pose>
+    </model>
+
+    <model name="cube12">
+      <include>
+        <uri>model://cube_20k</uri>
+      </include>
+      <pose>-2.0 1.01 0 0 0 0</pose>
+    </model>
+
+  </world>
+</sdf>
