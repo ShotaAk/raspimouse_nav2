@@ -47,6 +47,7 @@ def generate_launch_description():
             get_package_share_directory('raspimouse_description'),
             '/launch/display.launch.py']),
         launch_arguments={'lidar': 'urg',
+                          'lidar_frame': 'lidar_link',
                           'use_rviz': 'false',
                           'gazebo': 'true',
                           }.items(),
