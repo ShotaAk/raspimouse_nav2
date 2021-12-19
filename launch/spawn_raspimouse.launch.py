@@ -47,7 +47,8 @@ def generate_launch_description():
             get_package_share_directory('raspimouse_description'),
             '/launch/display.launch.py']),
         launch_arguments={'lidar': 'urg',
-                          'use_rviz': 'false'
+                          'use_rviz': 'false',
+                          'gazebo': 'true',
                           }.items(),
     )
 
@@ -70,18 +71,18 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
-        # RegisterEventHandler(
-        #     event_handler=OnProcessExit(
-        #         target_action=spawn_entity,
-        #         on_exit=[joint_state_controller],
-        #     )
-        # ),
-        # RegisterEventHandler(
-        #     event_handler=OnProcessExit(
-        #         target_action=joint_state_controller,
-        #         on_exit=[diff_drive_controller],
-        #     )
-        # ),
+        RegisterEventHandler(
+            event_handler=OnProcessExit(
+                target_action=spawn_entity,
+                on_exit=[joint_state_controller],
+            )
+        ),
+        RegisterEventHandler(
+            event_handler=OnProcessExit(
+                target_action=joint_state_controller,
+                on_exit=[diff_drive_controller],
+            )
+        ),
         # node_robot_state_publisher,
         raspimouse_model,
         spawn_entity,
