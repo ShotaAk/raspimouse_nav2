@@ -80,7 +80,7 @@ def generate_launch_description():
         ),
         RegisterEventHandler(
             event_handler=OnProcessExit(
-                target_action=joint_state_controller,
+                target_action=spawn_entity,
                 on_exit=[diff_drive_controller],
             )
         ),
