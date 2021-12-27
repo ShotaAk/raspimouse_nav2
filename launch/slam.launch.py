@@ -39,6 +39,17 @@ def generate_launch_description():
                      output='log',
                      arguments=['-d', rviz_config_file]
     )
+
+    slam_node = Node(
+        package='slam_toolbox', executable='sync_slam_toolbox_node',
+        output='screen',
+        parameters=[
+            get_package_share_directory(
+                'raspimouse_nav2')
+            + '/config/mapper_params_offline.yaml'
+        ],
+    )
+
     timer_spawn_raspimouse = TimerAction(
         period=5.0,
         actions=[
@@ -52,8 +63,11 @@ def generate_launch_description():
             rviz_node
         ]
     )
-    return LaunchDescription([
-        start_gazebo,
-        timer_spawn_raspimouse,
-        timer_start_rviz
-    ])
+
+    ld = LaunchDescription()
+    ld.add_action(start_gazebo)
+    ld.add_action(timer_spawn_raspimouse)
+    ld.add_action(timer_start_rviz)
+    # ld.add_action(slam_node)
+
+    return ld
