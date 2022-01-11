@@ -12,8 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import os
-
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription
@@ -22,26 +20,9 @@ from launch.actions import RegisterEventHandler
 from launch.event_handlers import OnProcessExit
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node
-from launch.substitutions import Command
 
 
 def generate_launch_description():
-    xacro_file = os.path.join(
-        get_package_share_directory('raspimouse_description'),
-        'urdf',
-        'raspimouse.urdf.xacro')
-    params = {'robot_description': Command(['xacro ', xacro_file, 
-                                            ' gazebo_plugin:=true',
-                                            ' config_file_package:=hac_demo_bots',
-                                            ' config_file_path:=config/gazebo_controllers.yaml'])}
-
-    node_robot_state_publisher = Node(
-        package='robot_state_publisher',
-        executable='robot_state_publisher',
-        output='screen',
-        parameters=[params]
-    )
-
     raspimouse_model = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([
             get_package_share_directory('raspimouse_description'),
@@ -84,7 +65,6 @@ def generate_launch_description():
                 on_exit=[diff_drive_controller],
             )
         ),
-        # node_robot_state_publisher,
         raspimouse_model,
         spawn_entity,
     ])
