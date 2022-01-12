@@ -31,6 +31,11 @@ def generate_launch_description():
             get_package_share_directory('raspimouse_nav2'),
             '/launch/spawn_raspimouse.launch.py']),
     )
+    spawn_simple_mobile_robot = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([
+            get_package_share_directory('raspimouse_nav2'),
+            '/launch/spawn_simple_mobile_robot.launch.py']),
+    )
     rviz_config_file = get_package_share_directory(
         'raspimouse_nav2') + '/launch/slam.rviz'
     rviz_node = Node(package='rviz2',
@@ -57,6 +62,14 @@ def generate_launch_description():
         ]
     )
 
+    timer_spawn_simple_mobile_robot = TimerAction(
+        period=5.0,
+        actions=[
+            spawn_simple_mobile_robot,
+        ]
+    )
+
+
     timer_start_rviz = TimerAction(
         period=10.0,
         actions=[
@@ -66,7 +79,8 @@ def generate_launch_description():
 
     ld = LaunchDescription()
     ld.add_action(start_gazebo)
-    ld.add_action(timer_spawn_raspimouse)
+    # ld.add_action(timer_spawn_raspimouse)
+    ld.add_action(timer_spawn_simple_mobile_robot)
     ld.add_action(timer_start_rviz)
     # ld.add_action(slam_node)
 
